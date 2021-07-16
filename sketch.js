@@ -1,7 +1,7 @@
 var balloon,balloonImage1,balloonImage2;
-// create database and position variable here
+// create database and height variable here
 var database;
-var height,position;
+var height,height;
 function preload(){
    bg =loadImage("cityImage.png");
    balloonImage1=loadAnimation("hotairballoon1.png");
@@ -21,8 +21,8 @@ function setup() {
 
   textSize(20); 
 
-  var balloonPosition=database.ref('balloon/position');
-  balloonPosition.on("value",readPosition,showError);
+  var balloonheight=database.ref('balloon/height');
+  balloonheight.on("value",readheight,showError);
 
 }
 
@@ -60,16 +60,16 @@ function draw() {
   text("**Use arrow keys to move Hot Air Balloon!",40,40);
 }
 function updateHeight(x,y){
-  database.ref('balloon/position').set({
+  database.ref('balloon/height').set({
       'x':height.x+x,
       'y':height.y+y,
   })
   }
 
 
-  function readPosition(data){
-    position=data.val();
-    balloon.x=position.x;
+  function readheight(data){
+    height=data.val();
+    balloon.x=height.x;
     balloon.y=height.y;
 }
 
